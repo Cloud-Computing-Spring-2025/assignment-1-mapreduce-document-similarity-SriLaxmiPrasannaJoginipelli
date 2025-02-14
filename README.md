@@ -81,9 +81,11 @@ A certain measure is used to determine the similarity based on the text content 
 
  ## Input Format
 
- -doc1	big data is used for analysis and processing
- -doc2	big data is used for processing and machine learning
- -doc3	machine learning is used for artificial intelligence and big data
+```bash
+ doc1	big data is used for analysis and processing
+ doc2	big data is used for processing and machine learning
+ doc3	machine learning is used for artificial intelligence and big data
+```
 
  ## Output Format
 
