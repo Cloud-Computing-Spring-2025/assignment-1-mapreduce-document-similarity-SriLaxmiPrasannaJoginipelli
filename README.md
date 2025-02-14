@@ -10,6 +10,75 @@ The goal of this assignment is to compute the **Jaccard Similarity** between pai
 
 ---
 
+## Approach and Implementation
+
+### Mapper
+
+After reading each page, the Mapper creates key-value pairs by processing the text data. The value is the document's content, while the key is a special identification for the document. Here, we employ the following format:
+
+doc1    big data is used for analysis and processing
+
+Following that, the Mapper generates similarity scores for pairs of documents.
+
+### Reducer
+
+By determining the similarity score between document pairings, the Reducer compiles the Mapper's output. After processing each pair of documents and determining how similar they are, the reduction outputs the results in the format shown below:
+
+(doc3, doc2) 72.73%
+
+### Similarity Calculation
+
+A certain measure is used to determine the similarity based on the text content of the documents. After each pair of documents is processed, the similarity scores between them are included in the result.
+
+## Step-by-Step Instructions for Running the Project
+
+1. **Clone the Repository**:
+   Clone the repository from GitHub to your local machine:
+
+2. **Setting Up Hadoop Cluster**:
+   verify using docker ps
+
+ 3. **Prepare Input Files**:
+    hdfs dfs -put /path/to/doc1.txt /input/doc1.txt
+    hdfs dfs -put /path/to/doc2.txt /input/doc2.txt
+    hdfs dfs -put /path/to/doc3.txt /input/doc3.txt
+
+4. **Build the Project**:
+   mvn clean package
+
+ 5. **Upload the Jar File**:
+   docker cp target/DocumentSimilarity-0.0.1-SNAPSHOT.jar namenode:/opt/hadoop-3.2.1/share/hadoop/mapreduce/similarity.jar
+
+6. **Run the Job**:
+   hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/similarity.jar com.example.controller.DocumentSimilarityDriver /input /output_similarity
+
+ 7. **Check the Output**:
+    hdfs dfs -cat /output_similarity/part-r-00000
+
+## challenges faced and Solutions found
+
+1. **HDFS Permissions Problems**:
+   When attempting to transfer data into HDFS, I ran across problems with file permissions. I fixed issue by making sure the input and output files have the correct locations and    permissions.
+
+2.**Debugging the MapReduce Logic**: 
+   On the initial attempt, the MapReduce job did not yield the desired results. I fixed the problems by going over the Mapper and Reducer code, adding logging, and confirming the    reasoning behind the similarity computations.
+
+
+ ## Input Format
+
+ doc1	big data is used for analysis and processing
+ doc2	big data is used for processing and machine learning
+ doc3	machine learning is used for artificial intelligence and big data
+
+ ## Output Format
+
+ (doc3, doc2)	72.73%
+ (doc2, doc1)	70.00%
+
+
+
+
+
 ### **📥 Example Input**  
 
 You will be given multiple text documents. Each document will contain several words. Your task is to compute the **Jaccard Similarity** between all pairs of documents based on the set of words they contain.  
