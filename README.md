@@ -39,9 +39,10 @@ A certain measure is used to determine the similarity based on the text content 
    verify using docker ps
 
  3. **Prepare Input Files**:
-    -hdfs dfs -put /path/to/doc1.txt /input/doc1.txt
-    -hdfs dfs -put /path/to/doc2.txt /input/doc2.txt
-    -hdfs dfs -put /path/to/doc3.txt /input/doc3.txt
+    ```bash
+   hdfs dfs -put /path/to/doc1.txt /input/doc1.txt
+   hdfs dfs -put /path/to/doc2.txt /input/doc2.txt
+   hdfs dfs -put /path/to/doc3.txt /input/doc3.txt
 
 4. **Build the Project**:
    mvn clean package
