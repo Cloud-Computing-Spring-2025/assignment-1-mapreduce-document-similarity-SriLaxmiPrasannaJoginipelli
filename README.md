@@ -36,9 +36,12 @@ A certain measure is used to determine the similarity based on the text content 
    Clone the repository from GitHub to your local machine:
 
 2. **Setting Up Hadoop Cluster**:
-   verify using docker ps
+   verify using
+   ```bash
+   docker ps
+   ```
 
- 3. **Prepare Input Files**:
+ 4. **Prepare Input Files**:
     Upload the input files to HDFS:
    ```bash
    hdfs dfs -put /path/to/doc1.txt /input/doc1.txt
@@ -48,16 +51,24 @@ A certain measure is used to determine the similarity based on the text content 
    
 
 4. **Build the Project**:
+   ```bash
    mvn clean package
+   ```
 
- 5. **Upload the Jar File**:
+5. **Upload the Jar File**:
+   ```bash
    docker cp target/DocumentSimilarity-0.0.1-SNAPSHOT.jar namenode:/opt/hadoop-3.2.1/share/hadoop/mapreduce/similarity.jar
+   ```
 
 6. **Run the Job**:
+   ```bash
    hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/similarity.jar com.example.controller.DocumentSimilarityDriver /input /output_similarity
+   ```
 
  7. **Check the Output**:
+    ```bash
     hdfs dfs -cat /output_similarity/part-r-00000
+    ```
 
 ## challenges faced and Solutions found
 
